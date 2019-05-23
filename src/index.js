@@ -8,9 +8,13 @@ let router = new Router()
 
 let user = require('./router/user')
 let home = require('./router/home')
+let hots = require('./router/hots')
+let category = require('./router/category')
 
 router.use('/user', user.routes())
 router.use('/home', home.routes())
+router.use('/hots', hots.routes())
+router.use('/category', category.routes())
 
 // 链接数据库
 ;(async () => {
