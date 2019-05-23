@@ -4,7 +4,10 @@ const app = new Koa()
 let router = new Router()
 
 let user = require('./router/user')
+let home = require('./router/home')
+
 router.use('/user', user.routes())
+router.use('/home', home.routes())
 
 // 链接数据库
 // ;(async () => {
