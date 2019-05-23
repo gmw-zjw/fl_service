@@ -8,11 +8,12 @@ const { connect, initSchema } = require('./db/init')
   await connect()
   initSchema()
   const user = mongoose.model('User')
-  let onceUser = new user({username: '执念', password: '123'})
+  let onceUser = new user({username: '执念1212', password: '123'})
 
   onceUser.save().then(() => {
     console.log('注册成功')
   })
+
 })()
 
 app.use(async ctx => {
