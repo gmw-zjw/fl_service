@@ -11,7 +11,9 @@ const categorySchema = new Schema({
       mallSubName: String,
       comments: Schema.Types.Mixed
     }
-  ]
+  ],
+  comments: Schema.Types.Mixed,
+  image: String
 })
 
 mongoose.model('Categorys', categorySchema)
