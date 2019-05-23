@@ -4,18 +4,44 @@ const path = require('path')
 const fs = require('fs')
 const router = new Router()
 
+/**
+ * 读取本地json并保存到数据库
+ */
 router.get('/insterAllCategory', async (ctx, next) => {
   // 读取json文件,并保存到数据库
   fs.readFile(path.join(__dirname, './category.json'), 'utf8', (err, data) => {
-    console.log(data)
+    newData = JSON.parse(data)
+    newData.data.map((val, index) => {
+      // 保存数据到数据库
+      const categorys = mongoose.model('Categorys')
+      let Categorys = new categorys(val)
+      
+      Categorys.save().then(() => {
+        console.log('接口数据保存成功')
+      })
+      .catch(err => {
+        console.log(`接口数据保存失败${err}`)
+      })
+    })
   })
 
   ctx.body = '数据读取中...'
   await next()
 })
 
+// 获取数据
 router.post('/getCategory', async (ctx, next) => {
-  // TODO
+  const Categorys = mongoose.model('Categorys')
+
+  let result = await Categorys.find({}).exec()
+
+  ctx.body = {
+    code: 0,
+    message: 'success',
+    data: result
+  }
+
+  await next()
 })
 
 module.exports = router
