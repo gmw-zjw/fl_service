@@ -1,5 +1,6 @@
 const Koa = require('koa')
 const Router = require('koa-router')
+const cors = require('koa2-cors')
 const app = new Koa()
 let router = new Router()
 
@@ -21,7 +22,7 @@ router.use('/home', home.routes())
 //   })
 
 // })()
-
+app.use(cors())
 app.use(router.routes())
 app.use(router.allowedMethods())
 
