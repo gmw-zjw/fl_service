@@ -44,4 +44,32 @@ router.post('/getCategory', async (ctx, next) => {
   await next()
 })
 
+// 根据大类id，页数，小类id获取数据
+router.post('/getMallGoods', async (ctx, next) => {
+
+  // 从请求体中拿到query，根据要求查询数据库，并返回接口数据
+  let query = ctx.querystring
+  //console.log(query)
+
+  const Categorys = mongoose.model('Categorys')
+
+  let result = await Categorys.findOne({}).exec()
+  
+  if ( result !== null) {
+    ctx.body = {
+      code: 0,
+      message: 'success',
+      data: result
+    }
+  } else {
+    ctx.body = {
+      code: 1,
+      message: 'error',
+      data: '数据查询失败， 请检查传入的字段是否正确'
+    }
+  }
+
+  await next()
+})
+
 module.exports = router
