@@ -48,12 +48,18 @@ router.post('/getCategory', async (ctx, next) => {
 router.post('/getMallGoods', async (ctx, next) => {
 
   // 从请求体中拿到query，根据要求查询数据库，并返回接口数据
-  let query = ctx.querystring
-  //console.log(query)
+
+  let quertData = {
+    page:ctx.query.page,
+    mallCategoryId: ctx.query.mallCategoryId,
+    mallSubId: ctx.query.mallSubId
+  }
+
+  //console.log(quertData)
 
   const Categorys = mongoose.model('Categorys')
 
-  let result = await Categorys.findOne({}).exec()
+  let result = await Categorys.find({quertData}).exec()
   
   if ( result !== null) {
     ctx.body = {
