@@ -67,10 +67,11 @@ router.get('/insertAllHomeInfo', async (ctx, next) => {
 router.post('/getHomePages', async (ctx, next) => {
   let Homes = mongoose.model('Homes')
   let result = await Homes.find({}).exec()
+  console.log('result :' + result )
   ctx.body = {
     code: 0,
     message: 'success',
-    data: result
+    result
   }
   await next()
 })
