@@ -7,7 +7,7 @@ const router = new Router()
 // 保存商城首页数据带数据库
 router.get('/insertAllHomeInfo', async (ctx, next) => {
   //读取文件， 并把读取到的数据方法数据库
-  fs.readFile(path.join(__dirname, './home.json'), 'utf8', (err, data) => {
+  fs.readFile(path.join(__dirname, 'data', './HomeData.json'), 'utf8', (err, data) => {
     if (err) throw err
     // 当我们读取多重嵌套的json数据时，会出现读取不到, 这里要转换下
     newData = JSON.parse(data)

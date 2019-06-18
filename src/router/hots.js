@@ -10,7 +10,7 @@ const fs = require('fs')
 // 将数据保存到数据库
 router.get('/insertAllGoodsInfo',async(ctx, next)=>{
    // 这块有个坑， 注意读取文件路径不对
-     fs.readFile(path.join(__dirname, './hot.json'),'utf8',(err,data)=>{
+     fs.readFile(path.join(__dirname, 'data', './HomeHot.json'),'utf8',(err,data)=>{
        //console.log(data)
         newData = JSON.parse(data)
         let saveCount=0

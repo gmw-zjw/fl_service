@@ -9,7 +9,8 @@ const router = new Router()
  */
 router.get('/insterAllCategory', async (ctx, next) => {
   // 读取json文件,并保存到数据库
-  fs.readFile(path.join(__dirname, './category.json'), 'utf8', (err, data) => {
+  fs.readFile(path.join(__dirname, 'data', './Category.json'), 'utf8', (err, data) => {
+    if (err) return err
     newData = JSON.parse(data)
     newData.data.map((val, index) => {
       // 保存数据到数据库
